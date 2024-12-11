@@ -1,0 +1,382 @@
+
+.Search-bar{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.Search-bar input{
+    height: 50px;
+    width: 400px;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    padding-left: 25px;
+    background-color: white;
+    font-size: 20px;
+}
+
+.Search-bar .icon{
+    
+    font-size: 30px;
+    color: white;
+    font-weight: 100;
+    cursor: pointer;
+    
+}
+
+.Search-bar .icon1{
+    font-size: 30px;
+    color: white;
+    font-weight: 0;
+    cursor: pointer;
+}
+
+.image{
+    margin-top: 20px;
+    background-color: none;
+}
+
+.temperature{
+    font-size: 50px;
+    font-family: 50px;
+    margin-top: 20px;
+    color: white;
+}
+
+.Location{
+    font-size: 30px;
+    font-family: 40px;
+    margin-top: 20px;
+    color: white;
+}
+
+.weather-data{
+    padding: 30px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.icons-data{
+    color: white;
+    font-size: 16px;
+}
+
+.col{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.weather .col img {
+    background-color: transparent; /* Ensure no background color */
+    border: none; /* Remove any border */
+    border-radius: 50%; /* Optionally make icons round */
+    width: 50px;
+    height: 50px;
+    object-fit: contain; /* Ensures the icon itself fits within the dimensions */
+}
+
+.offcanvas {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 250px;
+    height: 50%;
+    background-color: #b3d9ff;
+    padding: 20px;
+    z-index: 100;
+    transform: translateX(100%); 
+    transition: transform 0.4s ease-in-out; 
+}
+
+
+.offcanvas.open {
+    transform: translateX(0); 
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.offcanvas.open {
+    animation: slideIn 0.4s forwards;
+}
+
+.offcanvas.closed {
+    animation: slideOut 0.4s forwards;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.offcanvas-button {
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: #4da6ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.weather {
+    overflow: hidden; /* Prevent horizontal scroll when off-canvas is open */
+}
+.sunrise1 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.sunrise{
+    color:#008ae6;
+    font-size: 60px;
+}
+
+.sunset{
+    color:#008ae6;
+    font-size: 60px;
+}
+
+.sunset1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.main-section{
+    gap: 80px;
+    display: flex;
+    flex-direction: column;
+}
+
+.forecast-canvas {
+    position: fixed;
+    bottom: -100%;
+    left: 0;
+    width: 20%;
+    height: 100%;
+    background-color:  #b3d9ff;
+    transition: bottom 0.3s ease;
+    z-index: 100;
+    padding: 20px;
+}
+
+.forecast-canvas.open {
+    bottom: 0;
+}
+
+.forecast-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.forecast-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.weather {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: background-image 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.weather::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Reduces the brightness */
+    z-index: 1;
+    transition: background 0.5s ease-in-out;
+}
+
+.Search-bar,
+.weather-data,
+.offcanvas,
+.forecast-canvas {
+    position: relative;
+    z-index: 2; /* Bring these elements above the overlay */
+}
+
+.Search-bar input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+}
+
+.Search-bar .icon, 
+.Search-bar .icon1 {
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+}
+
+.forecast-canvas, .offcanvas {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px); /* Adds a nice blur effect */
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.forecast-section {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.forecast-item {
+    text-align: center;
+}
+
+
+/* Ensure clickable elements have a higher z-index */
+.sunrise1, .sunset1, .offcanvas-button {
+    position: relative;
+    z-index: 3; /* Higher z-index for clickable elements */
+}
+
+/* Make sure forecast-canvas and offcanvas do not obscure content */
+.forecast-canvas, .offcanvas {
+    z-index: 2;
+}
+
+/* Adjust other container elements */
+.weather::before {
+    z-index: 1; /* Keep background overlay behind buttons */
+}
+
+/* Ensure the weather container does not block interaction */
+.weather {
+    position: relative;
+    z-index: 1; /* Keep it behind interactive elements */
+}
+
+
+.weather {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: background-image 0.5s ease-in-out;
+}
+
+.weather::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dimmed overlay */
+    z-index: 1;
+    transition: background 0.5s ease-in-out;
+}
+
+.Search-bar, .weather-data, .offcanvas, .forecast-canvas {
+    position: relative;
+    z-index: 2;
+}
+
+.offcanvas {
+    position: fixed;
+    bottom: -100%; /* Start hidden off-screen at the top */
+    right: 0; /* Align to the right */
+    width: 250px;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    z-index: 100;
+    transition: transform 0.4s ease-in-out;
+    border-radius: 10px;
+    transform: translateY(-100%); /* Slide in from top when opened */
+}
+
+.offcanvas.open {
+    transform: translateY(0); /* Slide down into view */
+}
+
+/* 5-Day Forecast off-canvas styling (top-left) */
+.forecast-canvas {
+    position: fixed;
+    top: -1%; /* Start hidden off-screen at the top */
+    left: 0; /* Align to the left */
+    width: 250px;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    z-index: 100;
+    transition: transform 0.4s ease-in-out;
+    border-radius: 10px;
+    transform: translateY(-100%); /* Slide in from top when opened */
+}
+
+.forecast-canvas.open {
+    transform: translateY(0); /* Slide down into view */
+}
+
+/* Buttons styling for interactivity */
+.offcanvas-button, .sunrise, .sunset {
+    margin-top: 20px;
+    padding: 10px 15px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3); /* Light overlay effect */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.offcanvas-button:hover, .sunrise:hover, .sunset:hover {
+    background-color: rgba(255, 255, 255, 0.5); /* Brighter on hover */
+}
+
+
+
